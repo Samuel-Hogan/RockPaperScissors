@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <script>
+
+        let tie = 0;
+        let playerScore = 0;
+        let computerScore = 0;
+
+        function computerPlay() {
+            botAnwsers = Math.floor(Math.random()*3);
+            if ( botAnwsers == 0 ) {
+                return 'rock';
+            } else if ( botAnwsers == 2 ) {
+                return 'paper';
+            } else {
+                return 'scissors';
+            }
+        }
+        function playRound(playerSelection, computerSelection) {
+            if ( playerSelection == computerSelection ) {
+                tie++;
+                return "It's a Tie!";
+            }
+
+            if ( playerSelection == 'rock') {
+                if (computerSelection == 'paper') {
+                    computerScore++;
+                    return "You Lose! Paper beats Rock";
+                } else{
+                    playerScore++
+                    return "You Win! Rock beats Scissors";
+                }
+            }
+
+            if ( playerSelection == 'paper')
+                if (computerSelection == 'scissors'){
+                    computerScore++;
+                    return "You Lose! Scissors beats Paper";
+                } else{
+                    playerScore++
+                    return "You Win! Paper beats Rock"
+                }
+            
+            if ( playerSelection == 'scissors') {
+                if (computerSelection == 'rock') {
+                    computerScore++;
+                    return "You Lose! Rock beats Scissors";
+                } else {
+                    playerScore++
+                    return "You Win! Scissors beats Paper";
+                }
+            }
+
+            if ( playerSelection == null || ('rock' || 'paper' || 'scissors')) {
+                return "Invalid Weapon, Try Rock, Paper or Scissors";
+            }
+        }
+
+        
+        function gameReplay() {
+            let playerSelection  = prompt('Choose your weapon').toLowerCase();
+            let computerSelection = computerPlay()
+            console.log( playRound(playerSelection, computerSelection) );
+            
+        }
+        function game() {
+            gameReplay();gameReplay();gameReplay();gameReplay();gameReplay();showScore();
+        }
+
+        function showScore() {
+           console.log(`Player score: ${playerScore}`);
+           console.log(`Computer score: ${computerScore}`);
+           console.log(`Ties: ${tie}`);
+        }
+    </script>
+</html>
